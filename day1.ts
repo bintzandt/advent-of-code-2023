@@ -6,7 +6,7 @@ const part1 = (input: string) => {
         const first = s.split('').find(isDigit);
         const last = s.split('').findLast(isDigit);
 
-        return first + last;
+        return (first ?? "") + last;
     }).reduce((prev, curr) => prev + Number.parseInt(curr), 0);
 }
 
