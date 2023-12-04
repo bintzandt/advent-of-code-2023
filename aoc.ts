@@ -8,3 +8,5 @@ export const readFile = async (fileName: string) => {
 export const printSolution = (a: any, b: any) => {
     console.log(`Part 1: ${a}\nPart 2: ${b}`);
 }
+
+export const sum = (prev: number, curr: number) => prev + curr;
