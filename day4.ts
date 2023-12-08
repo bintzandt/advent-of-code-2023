@@ -17,15 +17,16 @@ const parseLine = (l: string) => {
 }
 
 const part1 = (input: string) => {
-  return input
+  return sum(
+    input
     .split("\n")
     .map(parseLine)
     .map(numberOfWinningNumbers => numberOfWinningNumbers === 0 ? 0 : Math.pow(2, numberOfWinningNumbers-1))
-    .reduce(sum, 0);
+  );
 };
 
 const part2 = (input: string) => {
-  return input
+  return sum(input
     .split("\n")
     .map(parseLine)
     // Items at the bottom never give more results
@@ -42,8 +43,7 @@ const part2 = (input: string) => {
         ...prev,
         1 + prev.slice(-numberOfWinningNumbers).reduce((prev, numberOfWinningNumbers) => prev + numberOfWinningNumbers, 0)
       ];
-    }, [])
-    .reduce(sum, 0);
+    }, []))
 }
 
 const input = await readFile("input/day4.txt");
