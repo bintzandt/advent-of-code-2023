@@ -72,3 +72,27 @@ export function repeat<T>(a: T, n: number): T[] {
     return [a].concat(repeat(a, n-1));
 }
 
+/**
+ * Uses a map to memoize the result of a function call
+ * with specific arguments.
+ * 
+ * Based on the example given in https://www.freecodecamp.org/news/understanding-memoize-in-javascript-51d07d19430e/
+ * but made more generic and TS compatible.
+ */
+export function memoize<Args extends unknown[], Result>(
+    func: (...args: Args) => Result
+): (...args: Args) => Result {
+    const stored = new Map<string, Result>();
+
+    return (...args) => {
+        const argString = JSON.stringify(args);
+
+        if (stored.has(argString)) {
+            return stored.get(argString)!;
+        }
+
+        const result = func(...args);
+        stored.set(argString, result);
+        return result;
+    };
+}
